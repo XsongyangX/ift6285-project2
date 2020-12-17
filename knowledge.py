@@ -35,8 +35,8 @@ def copula_knowledge(nlp, text):
             else:
                 print(f"{token.text} IS_A {token.head.text}")
 
-def read_json_file(nlp, path):
-    with open(path, "r") as file:
+def read_json_file(nlp, path: str):
+    with open(path.strip(), "r") as file:
         article = json.load(file)
         for paragraph in article["BodyParagraphs"]:
             copula_knowledge(nlp, paragraph)
