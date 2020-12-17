@@ -19,7 +19,7 @@ def is_negation(token: spacy.tokens.Token) -> bool:
     if len(children.intersection(["n'", "ne"])) != 0:
         return True
 
-    negation_words = children.intersection(["pas", "jamais"])
+    negation_words = children.intersection(["pas", "jamais", "rien"])
     if any(item in negation_words for item in [x.text for x in token.head.lefts]):
         return True
 
