@@ -35,25 +35,31 @@ def copula_knowledge(nlp, text):
             else:
                 print(f"{token.text} IS_A {token.head.text}")
 
+def read_json_file(nlp, path):
+    with open(path, "r") as file:
+        article = json.load(file)
+        for paragraph in article["BodyParagraphs"]:
+            copula_knowledge(nlp, paragraph)
+
 
 def main():
     parser = argparse.ArgumentParser(
         description="Extracts copula relationships from corpus directory")
-    parser.add_argument("directory")
+    parser.add_argument("file", help="Either a json or a list of files, depending on options")
+    parser.add_argument("--listed", help="Read file paths in the given file",\
+        action="store_const", const=True, default=False)
     args = parser.parse_args()
 
     nlp = spacy.load("fr_core_news_sm")
     
-    for file in os.listdir(args.directory):
-        path = os.path.join(args.directory, file)
-        
-        with open(path, "r") as file:
-            article = json.load(file)
+    if not args.listed:
+        path = args.file  
+        read_json_file(nlp, path)
 
-            for paragraph in article["BodyParagraphs"]:
-
-                copula_knowledge(nlp, paragraph)
-
+    else:
+        with open(args.file, "r") as file:
+            for line in file:
+                read_json_file(nlp, line)
 
 if __name__ == "__main__":
     main()
