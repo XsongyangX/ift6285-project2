@@ -1,6 +1,6 @@
 #!/bin/bash
 
 for file in data/test/*.json; do 
-    python knowledge.py data/test/$file > data/extractions/$file
-    python prune.py data/extractions/$file data/extractions/"${file%.*}".out
+    python knowledge.py $file > "${file%.*}".log
+    python prune.py "${file%.*}".log "${file%.*}".out
 done
