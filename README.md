@@ -8,14 +8,7 @@ John IS_A membre
 ```
 
 ## Acronym
-After a empty line separating the copulas with the acronyms, each line contains one accronym in the format.
+After an empty line separating the copulas with the acronyms, each line contains one accronym in the format.
 ```
-John IS_A membre
-Copula 2 
-.
-.
-.
-Copula n
-
-Acronym(Short Form), ['LongForm_1','LongForm_2' ... 'LongFrom_n']
+Short Form Acronym, ['LongForm_1', 'LongForm_2', ..., 'LongForm_n']
 ```
